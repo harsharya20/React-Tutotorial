@@ -1,19 +1,20 @@
-
-
+import Button from "./Button"
 const Header = ({ title }) => {
   return (
-      <header>
-    <h1 style = {headingStyle}>{title}</h1>
+      <header className = 'header'>
+    <h1>{title}</h1>
+    <Button color = 'green' text = 'Add'/>
     </header>
   )
 }
 
 Header.defaultProps = {
-    title: 'Task'
+    title: 'Task Tracker'
 }
 
-const headingStyle = {
-    color: 'red'
-}
+//   css in js
+// const headingStyle = {
+//     color: 'red'
+// }
 
 export default Header
