@@ -32,9 +32,14 @@ const App = () => {
 
 
     //Delete Task
-   const deleteTask = (id) => {
-     setTasks(tasks.filter((task) => task.id !==id)) //show only those whose id are not equal //we dont wanna show task with the id coz we are deleting it
-   } 
+   const deleteTask = async (id) => {
+     
+    await fetch(`http://localhost:5000/tasks/${id}`, {
+      method: 'DELETE'
+    })
+
+    setTasks(tasks.filter((task) => task.id !==id)) //show only those whose id are not equal //we dont wanna show task with the id coz we are deleting it
+  }
 
    //toggle reminder
    const toggleReminder = (id) => {
