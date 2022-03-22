@@ -1,7 +1,11 @@
 import Header from "./components/Header";
 import Tasks from "./components/Tasks";
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import { useState, useEffect } from 'react'
 import AddTask from "./components/AddTask";
+import { Footer } from "./components/Footer";
+import { About } from "./components/About";
+
 
 
 const App = () => {
@@ -83,16 +87,27 @@ const App = () => {
      setTasks(
        tasks.map((task) => task.id === id ? { ...task, reminder:data.reminder} : task))
    }
-
+  
+   
   return (
+    <Router>
     <div className="container">
     <Header onAdd={() => setShowAddTask(!showAddTask)} showAdd = {showAddTask} />
-    {showAddTask && <AddTask onAdd = {addTask} />}
+    <Routes>
+    <Route path='/' exact element={ (
+      <>
+      {showAddTask && <AddTask onAdd = {addTask} />}
     {tasks.length > 0 ? (<Tasks tasks={tasks} onDelete = {deleteTask} onToggle={toggleReminder} />) :(
-      'No tasks to display....' 
+      'No Tasks to Display....' 
     )}
+      </>
+    )} />
+    <Route path='/about' element={About()} />
+    </Routes>
+    <Footer />
     </div>
-  );
+    </Router>
+  )
 }
 
 export default App;
